@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ShopType extends AbstractType
@@ -15,9 +16,15 @@ class ShopType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('latitude')
-            ->add('longitude')
+            ->add('name', TextType::class, [
+                'label' => 'Nom du centre:'
+            ])
+            ->add('latitude', TextType::class, [
+                'label' => 'Latitude:'
+            ])
+            ->add('longitude', TextType::class, [
+                'label' => 'Longitude:'
+            ])
             ->add('type', EntityType::class, [
                 'label' => 'Type de centre:',
                 'class' => TypeOfShop::class,
@@ -27,7 +34,8 @@ class ShopType extends AbstractType
                 'choices' => [
                     'En ligne' => 1,
                     'Hors ligne' => null
-                ]
+                ],
+                'label' => 'Statut:'
             ])
             //->add('cgo')
         ;

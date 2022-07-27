@@ -20,7 +20,7 @@ class ShopController extends AbstractController
         $cgo = $security->getUser();
 
         return $this->render('shop/index.html.twig', [
-            'shops' => $shopRepository->findBy(['cgo' => $cgo]),
+            'shops' => $shopRepository->findBy(['cgo' => $cgo], ['name' => 'ASC']),
         ]);
     }
 

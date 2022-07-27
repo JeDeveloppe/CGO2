@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Shop{% endblock %}
+{% block title %}Création d'un centre
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Shop</h1>
+	<h1 class="col-12 text-center my-5">Création d'un centre</h1>
 
-    {{ include('shop/_form.html.twig') }}
+	<a class="btn btn-secondary mb-5" href="{{ path('app_shop_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_shop_index') }}">back to list</a>
+	<div class="row">
+		<div class="col-6 mx-auto">
+            {{ include('shop/_form.html.twig') }}
+        </div>
+    </div>
+
 {% endblock %}
