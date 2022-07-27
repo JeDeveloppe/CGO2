@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shop index
+{% endblock %}
+
+{% block body %}
+	<h1>Shop index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th>IsOnLine</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for shop in shops %}
+				<tr>
+					<td>{{ shop.id }}</td>
+					<td>{{ shop.name }}</td>
+					<td>{{ shop.latitude }}</td>
+					<td>{{ shop.longitude }}</td>
+					<td>{{ shop.isOnLine ? 'Yes' : 'No' }}</td>
+					<td>
+						<a class="btn btn-warning" href="{{ path('app_shop_edit', {'id': shop.id}) }}">Éditer</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a class="btn btn-primary" href="{{ path('app_shop_new') }}">Créer un nouveau centre +</a>
+{% endblock %}

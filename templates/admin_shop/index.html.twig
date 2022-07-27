@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste total des centres en BDD
+{% endblock %}
+
+{% block body %}
+	<h1>Liste total des centres en BDD</h1>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th>IsOnLine</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for shop in shops %}
+				<tr>
+					<td>{{ shop.name }}</td>
+					<td>{{ shop.latitude }}</td>
+					<td>{{ shop.longitude }}</td>
+					<td>{{ shop.isOnLine ? 'Yes' : 'No' }}</td>
+					<td>
+						<a href="{{ path('app_admin_shop_show', {'id': shop.id}) }}">show</a>
+						<a href="{{ path('app_admin_shop_edit', {'id': shop.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_admin_shop_new') }}">Create new</a>
+{% endblock %}
