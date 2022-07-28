@@ -13,18 +13,19 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon CGO</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="{{ path('app_shop_index') }}">Liste des centres rattachés</a>
 							<a class="dropdown-item" href="#">Liste des départements rattachés</a>
+							<a class="dropdown-item" href="{{ path('app_shop_index') }}">Liste des centres rattachés</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
 						</div>
 					</li>
 					{% if is_granted('ROLE_ADMIN') %}
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administrastion</a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="{{ path('app_admin_shop_index') }}">Liste des centres</a>
-								<a class="dropdown-item" href="{{ path('app_type_of_shop_index') }}">Types de centre</a>
+								<a class="dropdown-item" href="{{ path('app_admin_cgo_index') }}">Liste des CGOs</a>
+								<a class="dropdown-item" href="{{ path('app_type_of_shop_index') }}">Liste des types de centre</a>
 							</div>
 						</li>
 					{% endif %}

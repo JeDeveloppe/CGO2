@@ -1,33 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}TypeOfShop index
+{% block title %}Liste des types de centre
 {% endblock %}
 
 {% block body %}
-	<h1>TypeOfShop index</h1>
+	<h1 class="col-12 text-center my-5">Liste des types de centre</h1>
 
-	<table class="table table-striped text-center align-middle">
-		<thead>
-			<tr>
-				<th>Type</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for type_of_shop in type_of_shops %}
-				<tr>
-					<td>{{ type_of_shop.type }}</td>
-					<td>
-						<a class="btn btn-warning" href="{{ path('app_type_of_shop_edit', {'id': type_of_shop.id}) }}">Éditer</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="2">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+	<div class="row mb-5">
+		<div class="col-8 mx-auto">
+			<table class="table table-striped text-center align-middle">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for type_of_shop in type_of_shops %}
+						<tr>
+							<td>{{ type_of_shop.type }}</td>
+							<td>
+								<a class="btn btn-warning" href="{{ path('app_type_of_shop_edit', {'id': type_of_shop.id}) }}">Éditer</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="2">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-	<a href="{{ path('app_type_of_shop_new') }}">Create new</a>
+	<a class="btn btn-primary" href="{{ path('app_type_of_shop_new') }}">Créer un nouveau type +</a>
 {% endblock %}

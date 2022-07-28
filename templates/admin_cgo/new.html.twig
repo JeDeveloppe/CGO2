@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'un CGO
+{% endblock %}
+
+{% block body %}
+	<h1 class="col-12 text-center my-5">Création d'un CGO</h1>
+
+	<a class="btn btn-secondary mb-2" href="{{ path('app_admin_cgo_index') }}">Retour à la liste</a>
+
+
+	<div class="row mb-5">
+		<div class="col-6 mx-auto">
+			{{ include('admin_cgo/_form.html.twig') }}
+		</div>
+	</div>
+
+{% endblock %}

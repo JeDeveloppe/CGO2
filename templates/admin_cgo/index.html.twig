@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste total des CGOs en BDD
+{% endblock %}
+
+{% block body %}
+	<h1 class="col-12 text-center my-5">Liste total des CGOs en BDD</h1>
+
+	<a class="btn btn-primary mb-5" href="{{ path('app_admin_cgo_new') }}">Créer un nouveau CGO +</a>
+
+	<table class="table table-striped text-center align-middle">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Centres rattachés</th>
+				<th>Email</th>
+				<th>Roles</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for cgo in cgos %}
+				{{ dump(cgo) }}
+				<tr>
+					<td>{{ cgo.name }}</td>
+					<td>
+						{% if cgo.shops | length > 0 %}
+							<select>
+								{% set count = 1 %}
+								{% for shop in cgo.shops %}
+									<option>{{ count }}.
+										{{ shop.name }}</option>
+									{% set count = count + 1 %}
+								{% endfor %}
+							</select>
+						{% else %}
+							Aucun pour le moment...
+						{% endif %}
+					</td>
+					<td>{{ cgo.email }}</td>
+					<td>
+						{% for role in cgo.roles %}
+							{% if role == "ROLE_ADMIN" %}
+								<span class="badge text-bg-danger m-1">Administrateur</span>
+							{% elseif role == "ROLE_USER" %}
+								<span class="badge text-bg-info m-1">Utilisateur</span>
+							{% endif %}
+						{% endfor %}
+					</td>
+					<td>
+						<a class="btn btn-warning" href="{{ path('app_admin_cgo_edit', {'id': cgo.id}) }}">Éditer</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}
