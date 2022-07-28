@@ -33,7 +33,7 @@ class ShopType extends AbstractType
             ->add('isOnLine', ChoiceType::class, [
                 'choices' => [
                     'En ligne' => 1,
-                    'Hors ligne' => null
+                    'Hors ligne' => 0
                 ],
                 'label' => 'Statut:'
             ])

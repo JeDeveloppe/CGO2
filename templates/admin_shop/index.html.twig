@@ -4,28 +4,29 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Liste total des centres en BDD</h1>
+	<h1 class="col-12 text-center my-5">Liste total des centres en BDD</h1>
 
-	<table class="table table-striped">
+	<a class="btn btn-primary mb-5" href="{{ path('app_admin_shop_new') }}">Créer un nouveau centre+</a>
+
+	<table class="table table-striped text-center align-middle">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Latitude</th>
-				<th>Longitude</th>
-				<th>IsOnLine</th>
-				<th>actions</th>
+				<th>Nom</th>
+				<th>Statut du centre</th>
+				<th>Coordonnées GPS</th>
+				<th>Rattaché au CGO de</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for shop in shops %}
 				<tr>
 					<td>{{ shop.name }}</td>
-					<td>{{ shop.latitude }}</td>
-					<td>{{ shop.longitude }}</td>
-					<td>{{ shop.isOnLine ? 'Yes' : 'No' }}</td>
+					<td>{{ shop.isOnLine ? '<span class="text-success text-uppercase">En ligne</span>' : '<span class="text-danger text-uppercase">Hors ligne</span>' }}</td>
+					<td>Lat: {{ shop.latitude }} - Lng: {{ shop.longitude }}</td>
+					<td>{{ shop.cgo.name }}</td>
 					<td>
-						<a href="{{ path('app_admin_shop_show', {'id': shop.id}) }}">show</a>
-						<a href="{{ path('app_admin_shop_edit', {'id': shop.id}) }}">edit</a>
+						<a class="btn btn-warning" href="{{ path('app_admin_shop_edit', {'id': shop.id}) }}">Éditer</a>
 					</td>
 				</tr>
 			{% else %}
@@ -36,5 +37,4 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_admin_shop_new') }}">Create new</a>
 {% endblock %}
