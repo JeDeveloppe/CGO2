@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Ville;
 use App\Repository\VilleRepository;
+use App\Form\VilleAutocompleteField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,7 +15,7 @@ class SearchDistancesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('search', EntityType::class, [
+            ->add('ville', EntityType::class, [
                 'label' => false,
                 'class' => Ville::class,
                 'choice_label' => function (Ville $ville) {
@@ -26,6 +27,7 @@ class SearchDistancesType extends AbstractType
                 //     return $villeRepository->findVillesByDepartementsFromCgo($options['cgo']);
                 // },
             ])
+            // ->add('ville', VilleAutocompleteField::class)
         ;
     }
 
@@ -33,6 +35,7 @@ class SearchDistancesType extends AbstractType
     {
         $resolver->setDefaults([
             'cgo' => [],
+            'data_class' => Ville::class,
         ]);
     }
 }

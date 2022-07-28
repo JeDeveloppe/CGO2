@@ -12,7 +12,7 @@
                 {# on affiche le formulaire #}
                 {{ form_start(form) }}
                     <div class="form-group col-11 mx-auto">
-                        {{ form_row(form.search, { 'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.ville) }}
                         <div class="col-12 p-0 text-center mt-2">
                             <button class="btn btn-lg btn-success" type="submit">Calculer</button>
                             <a class="btn btn-lg btn-warning" href="{{ path('app_calcul_distances') }}">Reset</a>
