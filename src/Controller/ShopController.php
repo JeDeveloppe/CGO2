@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
-#[Route('/cgo/shop')]
+#[Route('/cgo/shops')]
 class ShopController extends AbstractController
 {
     #[Route('/', name: 'app_shop_index', methods: ['GET'])]

@@ -15,19 +15,22 @@ class SearchDistancesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('ville', EntityType::class, [
-                'label' => false,
-                'class' => Ville::class,
-                'choice_label' => function (Ville $ville) {
-                    return $ville->getName() . ' - ' . $ville->getPostalCode();
-                },
-                'placeholder' => 'Lieu de l\'intervention...',
-                'autocomplete' => true
-                // 'query_builder' => function(VilleRepository $villeRepository) use ($options) {
-                //     return $villeRepository->findVillesByDepartementsFromCgo($options['cgo']);
-                // },
+            // ->add('ville', EntityType::class, [
+            //     'label' => false,
+            //     'class' => Ville::class,
+            //     'choice_label' => function (Ville $ville) {
+            //         return $ville->getName() . ' - ' . $ville->getPostalCode();
+            //     },
+            //     'placeholder' => 'Lieu de l\'intervention...',
+            //     'autocomplete' => true,
+            //     'query_builder' => function(VilleRepository $villeRepository) use ($options) {
+            //         return $villeRepository->findVillesByDepartementsFromCgo($options['cgo']);
+            //     },
+            //     'mapped' => false
+            // ])
+            ->add('ville', VilleAutocompleteField::class, [
+                'mapped' => false
             ])
-            // ->add('ville', VilleAutocompleteField::class)
         ;
     }
 

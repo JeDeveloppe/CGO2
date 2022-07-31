@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+
+    <div class="row justify-content-start">
+        {% for departement in form.departements %}
+                <div class="form-check col-3 p-2 text-start">
+                        {{ form_widget(departement) }}
+                </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-12 text-center my-5">
+        <button class="btn btn-lg btn-success">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+{{ form_end(form) }}

@@ -36,7 +36,7 @@ class SiteController extends AbstractController
 
             $shops = $shopRepository->findBy(['cgo' => $cgo], ['name' => 'ASC']);
 
-            $depannage = $form->get('search')->getData();
+            $depannage = $form->get('ville')->getData();
 
             foreach($shops as $shop){
 

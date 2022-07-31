@@ -34,11 +34,11 @@ class Cgo implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'cgo', targetEntity: Shop::class)]
     private Collection $shops;
 
-    #[ORM\OneToMany(mappedBy: 'cgo', targetEntity: Departement::class)]
-    private Collection $departements;
-
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+
+    #[ORM\ManyToMany(targetEntity: Departement::class, inversedBy: 'cgo')]
+    private Collection $departements;
 
     public function __construct()
     {
@@ -146,6 +146,18 @@ class Cgo implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Departement>
      */
@@ -158,7 +170,7 @@ class Cgo implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->departements->contains($departement)) {
             $this->departements->add($departement);
-            $departement->setCgo($this);
+            $departement->addCgo($this);
         }
 
         return $this;
@@ -167,23 +179,8 @@ class Cgo implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeDepartement(Departement $departement): self
     {
         if ($this->departements->removeElement($departement)) {
-            // set the owning side to null (unless already changed)
-            if ($departement->getCgo() === $this) {
-                $departement->setCgo(null);
-            }
+            $departement->removeCgo($this);
         }
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
 
         return $this;
     }

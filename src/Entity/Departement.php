@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DepartementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DepartementRepository::class)]
@@ -28,8 +30,13 @@ class Departement
     #[ORM\Column(length: 255)]
     private ?string $departementNomSoundex = null;
 
-    #[ORM\ManyToOne(inversedBy: 'departements')]
-    private ?Cgo $cgo = null;
+    #[ORM\ManyToMany(targetEntity: Cgo::class, mappedBy: 'departements')]
+    private Collection $cgo;
+
+    public function __construct()
+    {
+        $this->cgo = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +111,22 @@ class Departement
     public function setCgo(?Cgo $cgo): self
     {
         $this->cgo = $cgo;
+
+        return $this;
+    }
+
+    public function addCgo(Cgo $cgo): self
+    {
+        if (!$this->cgo->contains($cgo)) {
+            $this->cgo->add($cgo);
+        }
+
+        return $this;
+    }
+
+    public function removeCgo(Cgo $cgo): self
+    {
+        $this->cgo->removeElement($cgo);
 
         return $this;
     }

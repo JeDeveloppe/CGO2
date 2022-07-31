@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des départements rattachés au CGO{% endblock %}
+
+{% block body %}
+
+    <h1 class="col-12 text-center my-5">Liste des départements rattachés au CGO</h1>
+
+    <a class="btn btn-warning mb-3" href="{{ path('app_dashboard') }}">Retour au tableau de bord</a>
+
+    {{ include('site/departement/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+
+{% endblock %}

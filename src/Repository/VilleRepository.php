@@ -39,6 +39,26 @@ class VilleRepository extends ServiceEntityRepository
         }
     }
 
+    public function findVillesByDepartementsFromCgo($cgo)
+    {
+
+        $departements = $cgo->getDepartements();
+
+        $results = [];
+
+        foreach($departements as $departement){
+            $result =  $this->createQueryBuilder('v')
+                ->where('v.code_postal LIKE :departement')
+                ->setParameter('departement', $departement->getDepartementCode().'%')
+                ->orderBy('v.name', 'ASC')
+                ->getQuery();
+
+            array_push($results, $result);
+        }
+
+        return $results;
+    }
+
 //    /**
 //     * @return Ville[] Returns an array of Ville objects
 //     */
