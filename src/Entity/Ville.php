@@ -28,6 +28,9 @@ class Ville
     #[ORM\Column(type: Types::DECIMAL, precision: 8, scale: 6)]
     private ?string $longitude = null;
 
+    #[ORM\ManyToOne(inversedBy: 'villes')]
+    private ?Departement $departement = null;
+
     public function __construct()
     {
         $this->searchShortWays = new ArrayCollection();
@@ -88,6 +91,18 @@ class Ville
     public function __toString(): string
     {
         return $this->nom;
+    }
+
+    public function getDepartement(): ?Departement
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(?Departement $departement): self
+    {
+        $this->departement = $departement;
+
+        return $this;
     }
 
 }

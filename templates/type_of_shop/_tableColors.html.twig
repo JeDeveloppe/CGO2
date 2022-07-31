@@ -1,0 +1,8 @@
+
+<table>
+    {% for color in colors %}
+        <tr>
+            <td>{{ color.name }}</td><td class="bg-{{color.name}}"></td>
+        </tr>
+    {% endfor %}
+</table>

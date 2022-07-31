@@ -8,6 +8,7 @@ use App\Form\VilleAutocompleteField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchDistancesType extends AbstractType
@@ -30,6 +31,9 @@ class SearchDistancesType extends AbstractType
             // ])
             ->add('ville', VilleAutocompleteField::class, [
                 'mapped' => false
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Calculer'
             ])
         ;
     }

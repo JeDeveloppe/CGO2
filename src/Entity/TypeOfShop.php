@@ -21,6 +21,9 @@ class TypeOfShop
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Shop::class)]
     private Collection $shops;
 
+    #[ORM\Column(length: 255)]
+    private ?string $color = null;
+
     public function __construct()
     {
         $this->shops = new ArrayCollection();
@@ -69,6 +72,18 @@ class TypeOfShop
                 $shop->setType(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }

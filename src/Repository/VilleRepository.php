@@ -44,21 +44,23 @@ class VilleRepository extends ServiceEntityRepository
 
         $departements = $cgo->getDepartements();
 
-        $results = [];
-
-        foreach($departements as $departement){
-            $result =  $this->createQueryBuilder('v')
-                ->where('v.code_postal LIKE :departement')
-                ->setParameter('departement', $departement->getDepartementCode().'%')
-                ->orderBy('v.name', 'ASC')
-                ->getQuery();
-
-            array_push($results, $result);
-        }
-
-        return $results;
+        return $this->createQueryBuilder('v')
+            ->where('v.departement IN (:departements)')
+            ->setParameter('departements', $departements)
+            ->orderBy('v.name', 'ASC')
+        ;
     }
 
+
+    public function SqlFindAllBetween($start,$end){
+        return $this->createQueryBuilder('v')
+            ->where('v.id BETWEEN :start AND :end')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->orderBy('v.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Ville[] Returns an array of Ville objects
 //     */

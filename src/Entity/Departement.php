@@ -33,9 +33,13 @@ class Departement
     #[ORM\ManyToMany(targetEntity: Cgo::class, mappedBy: 'departements')]
     private Collection $cgo;
 
+    #[ORM\OneToMany(mappedBy: 'departement', targetEntity: Ville::class)]
+    private Collection $villes;
+
     public function __construct()
     {
         $this->cgo = new ArrayCollection();
+        $this->villes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,6 +131,36 @@ class Departement
     public function removeCgo(Cgo $cgo): self
     {
         $this->cgo->removeElement($cgo);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ville>
+     */
+    public function getVilles(): Collection
+    {
+        return $this->villes;
+    }
+
+    public function addVille(Ville $ville): self
+    {
+        if (!$this->villes->contains($ville)) {
+            $this->villes->add($ville);
+            $ville->setDepartement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVille(Ville $ville): self
+    {
+        if ($this->villes->removeElement($ville)) {
+            // set the owning side to null (unless already changed)
+            if ($ville->getDepartement() === $this) {
+                $ville->setDepartement(null);
+            }
+        }
 
         return $this;
     }

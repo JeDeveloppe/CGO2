@@ -4503,6 +4503,13 @@ fieldset:disabled .btn {
   position: relative;
   top: -1px;
 }
+.badge-success {
+  --bs-bg-opacity: 1;
+  background-color: rgba(
+    var(--bs-success-rgb),
+    var(--bs-bg-opacity)
+  ) !important;
+}
 .alert {
   --bs-alert-bg: transparent;
   --bs-alert-padding-x: 1rem;

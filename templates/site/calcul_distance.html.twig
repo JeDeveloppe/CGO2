@@ -11,17 +11,12 @@
 		<div class="col-12 col-lg-5 p-0">
 			<div class="card col-12 text-center py-5 border-primary p-0">
 				
-				<div class="form-group col-11 mx-auto">
+
 				{# on affiche le formulaire #}
 				{{ form_start(form) }}
 					{{ form_widget(form.ville) }}
-					{{ form_end(form) }}
-					<div class="col-12 p-0 text-center mt-2">
-						<button class="btn btn-lg btn-success" type="submit">Calculer</button>
-						<a class="btn btn-lg btn-warning" href="{{ path('app_calcul_distances') }}">Reset</a>
-					</div>
-				</div>
-				
+				{{ form_end(form) }}
+
 			</div>
 		</div>
 		<div class="col-12 col-lg-6 my-3 my-lg-0 p-0">
@@ -34,14 +29,16 @@
 							<th>Distance</th>
 							<th>Temps de trajet</th>
 						</thead>
-						<tbody class="table-distance">
+						<tbody>
 							{% for data in datas %}
 								{% set dureeEnSecondes = data.duration %}
 								{% set hours = (dureeEnSecondes / 3600) %60 | round %}
 								{% set minutes = (dureeEnSecondes / 60) %60 | round %}
 								<tr>
-									<td>{{ data.shop.name }}
-										[{{ data.shop.type.type }}]</td>
+									<td class="text-start">
+										{{ data.shop.name }}
+										<span class="badge badge-success"> {{ data.shop.type.type }} </span>
+									</td>
 									<td>{{ data.distance / 1000 }}
 										KMS</td>
 									<td>

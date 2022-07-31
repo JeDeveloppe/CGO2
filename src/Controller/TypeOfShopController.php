@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\TypeOfShop;
 use App\Form\TypeOfShopType;
+use App\Repository\ColorShopRepository;
 use App\Repository\TypeOfShopRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,11 +23,12 @@ class TypeOfShopController extends AbstractController
     }
 
     #[Route('/new', name: 'app_type_of_shop_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TypeOfShopRepository $typeOfShopRepository): Response
+    public function new(Request $request, TypeOfShopRepository $typeOfShopRepository, ColorShopRepository $colorShopRepository): Response
     {
         $typeOfShop = new TypeOfShop();
         $form = $this->createForm(TypeOfShopType::class, $typeOfShop);
         $form->handleRequest($request);
+        $colors = $colorShopRepository->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $typeOfShopRepository->add($typeOfShop, true);
@@ -37,6 +39,7 @@ class TypeOfShopController extends AbstractController
         return $this->renderForm('type_of_shop/new.html.twig', [
             'type_of_shop' => $typeOfShop,
             'form' => $form,
+            'colors' => $colors
         ]);
     }
 
@@ -49,10 +52,11 @@ class TypeOfShopController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_type_of_shop_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, TypeOfShop $typeOfShop, TypeOfShopRepository $typeOfShopRepository): Response
+    public function edit(Request $request, TypeOfShop $typeOfShop, TypeOfShopRepository $typeOfShopRepository, ColorShopRepository $colorShopRepository): Response
     {
         $form = $this->createForm(TypeOfShopType::class, $typeOfShop);
         $form->handleRequest($request);
+        $colors = $colorShopRepository->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $typeOfShopRepository->add($typeOfShop, true);
@@ -63,6 +67,7 @@ class TypeOfShopController extends AbstractController
         return $this->renderForm('type_of_shop/edit.html.twig', [
             'type_of_shop' => $typeOfShop,
             'form' => $form,
+            'colors' => $colors
         ]);
     }
 
