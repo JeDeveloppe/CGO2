@@ -5,11 +5,11 @@
 {% block body %}
     <h1>Edit TypeOfShop</h1>
 
-    {{ include('type_of_shop/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/type_of_shop/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_type_of_shop_index') }}">back to list</a>
 
-    {{ include('type_of_shop/_tableColors.html.twig') }}
+    {{ include('admin/type_of_shop/_tableColors.html.twig') }}
 
-    {{ include('type_of_shop/_delete_form.html.twig') }}
+    {{ include('admin/type_of_shop/_delete_form.html.twig') }}
 {% endblock %}

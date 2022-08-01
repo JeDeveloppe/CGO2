@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Shop;
 use App\Form\AdminShopType;
@@ -16,7 +16,7 @@ class AdminShopController extends AbstractController
     #[Route('/', name: 'app_admin_shop_index', methods: ['GET'])]
     public function index(ShopRepository $shopRepository): Response
     {
-        return $this->render('admin_shop/index.html.twig', [
+        return $this->render('admin/shop/index.html.twig', [
             'shops' => $shopRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class AdminShopController extends AbstractController
             return $this->redirectToRoute('app_admin_shop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_shop/new.html.twig', [
+        return $this->renderForm('admin/shop/new.html.twig', [
             'shop' => $shop,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class AdminShopController extends AbstractController
     #[Route('/{id}', name: 'app_admin_shop_show', methods: ['GET'])]
     public function show(Shop $shop): Response
     {
-        return $this->render('admin_shop/show.html.twig', [
+        return $this->render('admin/shop/show.html.twig', [
             'shop' => $shop,
         ]);
     }
@@ -60,7 +60,7 @@ class AdminShopController extends AbstractController
             return $this->redirectToRoute('app_admin_shop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_shop/edit.html.twig', [
+        return $this->renderForm('admin/shop/edit.html.twig', [
             'shop' => $shop,
             'form' => $form,
         ]);

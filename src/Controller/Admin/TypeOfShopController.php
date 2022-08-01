@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\TypeOfShop;
 use App\Form\TypeOfShopType;
@@ -17,7 +17,7 @@ class TypeOfShopController extends AbstractController
     #[Route('/', name: 'app_type_of_shop_index', methods: ['GET'])]
     public function index(TypeOfShopRepository $typeOfShopRepository): Response
     {
-        return $this->render('type_of_shop/index.html.twig', [
+        return $this->render('admin/type_of_shop/index.html.twig', [
             'type_of_shops' => $typeOfShopRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class TypeOfShopController extends AbstractController
             return $this->redirectToRoute('app_type_of_shop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('type_of_shop/new.html.twig', [
+        return $this->renderForm('admin/type_of_shop/new.html.twig', [
             'type_of_shop' => $typeOfShop,
             'form' => $form,
             'colors' => $colors
@@ -46,7 +46,7 @@ class TypeOfShopController extends AbstractController
     #[Route('/{id}', name: 'app_type_of_shop_show', methods: ['GET'])]
     public function show(TypeOfShop $typeOfShop): Response
     {
-        return $this->render('type_of_shop/show.html.twig', [
+        return $this->render('admin/type_of_shop/show.html.twig', [
             'type_of_shop' => $typeOfShop,
         ]);
     }
@@ -64,7 +64,7 @@ class TypeOfShopController extends AbstractController
             return $this->redirectToRoute('app_type_of_shop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('type_of_shop/edit.html.twig', [
+        return $this->renderForm('admin/type_of_shop/edit.html.twig', [
             'type_of_shop' => $typeOfShop,
             'form' => $form,
             'colors' => $colors

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Site;
 
 use App\Service\CgoService;
 use App\Form\SearchDistancesType;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Cgo;
 use App\Form\CgoEditType;
@@ -19,7 +19,7 @@ class AdminCgoController extends AbstractController
     #[Route('/', name: 'app_admin_cgo_index', methods: ['GET'])]
     public function index(CgoRepository $cgoRepository): Response
     {
-        return $this->render('admin_cgo/index.html.twig', [
+        return $this->render('admin/cgo/index.html.twig', [
             'cgos' => $cgoRepository->findAll(),
         ]);
     }
@@ -37,7 +37,7 @@ class AdminCgoController extends AbstractController
             return $this->redirectToRoute('app_admin_cgo_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_cgo/new.html.twig', [
+        return $this->renderForm('admin/cgo/new.html.twig', [
             'cgo' => $cgo,
             'form' => $form,
         ]);
@@ -65,7 +65,7 @@ class AdminCgoController extends AbstractController
             return $this->redirectToRoute('app_admin_cgo_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_cgo/edit.html.twig', [
+        return $this->renderForm('admin/cgo/edit.html.twig', [
             'cgo' => $cgo,
             'form' => $form,
         ]);

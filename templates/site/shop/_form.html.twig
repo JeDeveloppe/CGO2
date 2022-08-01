@@ -1,0 +1,19 @@
+
+<div class="row mb-5">
+    {{ form_start(form) }}
+
+        <div class="col-12 my-3">{{ form_row(form.name) }}</div>
+
+        <div class="col-12 d-flex my-5">
+            <div class="col-6">{{ form_row(form.latitude) }}</div>
+            <div class="col-6">{{ form_row(form.longitude) }}</div>
+        </div>
+        <div class="col-12 my-3">{{ form_row(form.type) }}</div>
+        <div class="col-12 my-3">{{ form_row(form.isOnLine) }}</div>
+       
+
+        {{ form_rest(form) }}
+
+        <button class="btn btn-success my-3">{{ button_label|default('Enregistrer') }}</button>
+    {{ form_end(form) }}
+</div>

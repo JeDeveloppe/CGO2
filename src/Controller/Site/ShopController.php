@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Site;
 
 use App\Entity\Shop;
 use App\Form\ShopType;
@@ -19,7 +19,7 @@ class ShopController extends AbstractController
     {
         $cgo = $security->getUser();
 
-        return $this->render('shop/index.html.twig', [
+        return $this->render('site/shop/index.html.twig', [
             'shops' => $shopRepository->findBy(['cgo' => $cgo], ['name' => 'ASC']),
         ]);
     }
@@ -42,7 +42,7 @@ class ShopController extends AbstractController
             return $this->redirectToRoute('app_shop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('shop/new.html.twig', [
+        return $this->renderForm('site/shop/new.html.twig', [
             'shop' => $shop,
             'form' => $form,
         ]);
@@ -51,7 +51,7 @@ class ShopController extends AbstractController
     #[Route('/{id}', name: 'app_shop_show', methods: ['GET'])]
     public function show(Shop $shop): Response
     {
-        return $this->render('shop/show.html.twig', [
+        return $this->render('site/shop/show.html.twig', [
             'shop' => $shop,
         ]);
     }
@@ -70,7 +70,7 @@ class ShopController extends AbstractController
             return $this->redirectToRoute('app_shop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('shop/edit.html.twig', [
+        return $this->renderForm('site/shop/edit.html.twig', [
             'shop' => $shop,
             'form' => $form,
         ]);

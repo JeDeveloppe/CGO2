@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\ColorShop;
 use App\Form\ColorShopType;
@@ -16,7 +16,7 @@ class AdminColorShopController extends AbstractController
     #[Route('/', name: 'app_color_shop_index', methods: ['GET'])]
     public function index(ColorShopRepository $colorShopRepository): Response
     {
-        return $this->render('color_shop/index.html.twig', [
+        return $this->render('admin/color_shop/index.html.twig', [
             'color_shops' => $colorShopRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class AdminColorShopController extends AbstractController
             return $this->redirectToRoute('app_color_shop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('color_shop/new.html.twig', [
+        return $this->renderForm('admin/color_shop/new.html.twig', [
             'color_shop' => $colorShop,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class AdminColorShopController extends AbstractController
     #[Route('/{id}', name: 'app_color_shop_show', methods: ['GET'])]
     public function show(ColorShop $colorShop): Response
     {
-        return $this->render('color_shop/show.html.twig', [
+        return $this->render('admin/color_shop/show.html.twig', [
             'color_shop' => $colorShop,
         ]);
     }
@@ -60,7 +60,7 @@ class AdminColorShopController extends AbstractController
             return $this->redirectToRoute('app_color_shop_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('color_shop/edit.html.twig', [
+        return $this->renderForm('admin/color_shop/edit.html.twig', [
             'color_shop' => $colorShop,
             'form' => $form,
         ]);
