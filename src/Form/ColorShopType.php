@@ -6,6 +6,7 @@ use App\Entity\ColorShop;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ColorShopType extends AbstractType
@@ -13,9 +14,9 @@ class ColorShopType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', EntityType::class, [
-                'class' => ColorShop::class,
-            ])
+            ->add('name')
+            ->add('textColor', ColorType::class)
+            ->add('bgColor', ColorType::class)
         ;
     }
 

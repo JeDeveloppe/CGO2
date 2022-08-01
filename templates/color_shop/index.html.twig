@@ -5,11 +5,12 @@
 {% block body %}
     <h1>ColorShop index</h1>
 
-    <table class="table">
+    <table class="table text-center align-middle">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Exemple</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ color_shop.id }}</td>
                 <td>{{ color_shop.name }}</td>
+                <td style="color:{{ color_shop.textColor }}; background-color:{{ color_shop.bgColor }};">TEXTE</td>
                 <td>
                     <a href="{{ path('app_color_shop_show', {'id': color_shop.id}) }}">show</a>
                     <a href="{{ path('app_color_shop_edit', {'id': color_shop.id}) }}">edit</a>

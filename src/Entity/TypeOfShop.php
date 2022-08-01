@@ -21,8 +21,8 @@ class TypeOfShop
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Shop::class)]
     private Collection $shops;
 
-    #[ORM\Column(length: 255)]
-    private ?string $color = null;
+    #[ORM\ManyToOne(inversedBy: 'typeOfShops')]
+    private ?ColorShop $color = null;
 
     public function __construct()
     {
@@ -76,15 +76,16 @@ class TypeOfShop
         return $this;
     }
 
-    public function getColor(): ?string
+    public function getColor(): ?ColorShop
     {
         return $this->color;
     }
 
-    public function setColor(string $color): self
+    public function setColor(?ColorShop $color): self
     {
         $this->color = $color;
 
         return $this;
     }
+
 }

@@ -15,7 +15,10 @@ class TypeOfShopType extends AbstractType
     {
         $builder
             ->add('type')
-            ->add('color', ColorShopType::class)
+            ->add('color', EntityType::class, [
+                'class' => ColorShop::class,
+                'choice_label' => 'name'
+            ])
         ;
     }
 
