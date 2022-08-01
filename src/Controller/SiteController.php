@@ -36,11 +36,20 @@ class SiteController extends AbstractController
 
             $shops = $shopRepository->findBy(['cgo' => $cgo], ['name' => 'ASC']);
 
-            $depannage = $form->get('ville')->getData();
+            if(!empty($form->get('ville')->getData())){
+                $depannage = $form->get('ville')->getData();
+
+                $interventionLongitude = $depannage->getLongitude();
+                $interventionLatitude = $depannage->getLatitude();
+
+            }else{
+                $interventionLongitude = $form->get('interventionLongitude')->getData();
+                $interventionLatitude =$form->get('interventionLatitude')->getData() ;
+            }
 
             foreach($shops as $shop){
 
-                array_push($datas, $cgoService->getDistancesBeetweenDepannageAndShop($depannage,$shop));
+                array_push($datas, $cgoService->getDistancesBeetweenDepannageAndShop($interventionLatitude,$interventionLongitude,$shop));
 
             }
 

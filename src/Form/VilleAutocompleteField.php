@@ -25,7 +25,8 @@ class VilleAutocompleteField extends AbstractType
     {
         $resolver->setDefaults([
             'class' => Ville::class,
-            'placeholder' => 'Lieu de l\'intervention...',
+            'label' => false,
+            'placeholder' => 'Recherche par ville...',
             'choice_label' => function (Ville $ville) {
                 return $ville->getName() . ' - ' . $ville->getPostalCode();
             },

@@ -6,34 +6,35 @@ use App\Entity\Ville;
 use App\Repository\VilleRepository;
 use App\Form\VilleAutocompleteField;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class SearchDistancesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('ville', EntityType::class, [
-            //     'label' => false,
-            //     'class' => Ville::class,
-            //     'choice_label' => function (Ville $ville) {
-            //         return $ville->getName() . ' - ' . $ville->getPostalCode();
-            //     },
-            //     'placeholder' => 'Lieu de l\'intervention...',
-            //     'autocomplete' => true,
-            //     'query_builder' => function(VilleRepository $villeRepository) use ($options) {
-            //         return $villeRepository->findVillesByDepartementsFromCgo($options['cgo']);
-            //     },
-            //     'mapped' => false
-            // ])
             ->add('ville', VilleAutocompleteField::class, [
+                'mapped' => false,
+                'required' => false,
+            ])
+            ->add('interventionLatitude', NumberType::class, [
+                'label' => 'Latitude (entre 50 et 42):',
+                'required' => false,
+                'mapped' => false
+            ])
+            ->add('interventionLongitude', NumberType::class, [
+                'label' => 'Longitude (entre -5 et 8):',
+                'required' => false,
                 'mapped' => false
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Calculer'
+                'label' => 'Calculer',
+                'attr' => [
+                    'class' => 'btn btn-success mt-4'
+                ]
             ])
         ;
     }

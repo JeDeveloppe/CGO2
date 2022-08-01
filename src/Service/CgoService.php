@@ -13,11 +13,11 @@ class CgoService
         $this->client = $client;
     }
 
-    public function getDistancesBeetweenDepannageAndShop($lieuDepannage, $shop): array
+    public function getDistancesBeetweenDepannageAndShop($interventionLatitude, $interventionLongitude, $shop): array
     {
         $response = $this->client->request(
             'GET',
-            'https://api.tomtom.com/routing/1/calculateRoute/'.$lieuDepannage->getLatitude().','.$lieuDepannage->getLongitude().':'.$shop->getLatitude().','.$shop->getLongitude().'/json?key=CY0cA0IJXHBdI3e8kqVijtyRoxuV6ULL'
+            'https://api.tomtom.com/routing/1/calculateRoute/'.$interventionLatitude.','.$interventionLongitude.':'.$shop->getLatitude().','.$shop->getLongitude().'/json?key=CY0cA0IJXHBdI3e8kqVijtyRoxuV6ULL'
         );
 
         

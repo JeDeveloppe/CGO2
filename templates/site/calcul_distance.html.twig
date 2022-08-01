@@ -10,11 +10,25 @@
 	<div class="row justify-content-around">
 		<div class="col-12 col-lg-5 p-0">
 			<div class="card col-12 text-center py-5 border-primary p-0">
-				
+				<h3 class="col-12">Lieu d'intervention:</h3>
+					{# on affiche le formulaire #}
+					{{ form_start(form) }}
+						<div class="col-11 mx-auto">
+							{{ form_row(form.ville) }}
+						</div>
+					<hr>
 
-				{# on affiche le formulaire #}
-				{{ form_start(form) }}
-					{{ form_widget(form.ville) }}
+					<div class="row justify-content-center">
+						<h3 class="col-12">Par coordonnées GPS:</h3>
+
+						<div class="col-6">
+							{{ form_row(form.interventionLatitude) }}
+						</div>
+						<div class="col-6">
+							{{ form_row(form.interventionLongitude) }}
+						</div>
+					</div>
+					{{ form_rest(form) }}
 				{{ form_end(form) }}
 
 			</div>
