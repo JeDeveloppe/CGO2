@@ -20,10 +20,10 @@ class ShopType extends AbstractType
                 'label' => 'Nom du centre:'
             ])
             ->add('latitude', TextType::class, [
-                'label' => 'Latitude:'
+                'label' => 'Latitude (entre 50 et 42):'
             ])
             ->add('longitude', TextType::class, [
-                'label' => 'Longitude:'
+                'label' => 'Longitude (entre -5 et 8):'
             ])
             ->add('type', EntityType::class, [
                 'label' => 'Type de centre:',

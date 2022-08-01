@@ -26,15 +26,33 @@ class SiteController extends AbstractController
     {
         $cgo = $security->getUser();
 
+        //on verifie si des departements sont attachés au cgo
+        $departements = $cgo->getDepartements();
+        //si aucun de rattaché
+        if(count($departements) == 0){
+            $this->addFlash('warning', 'Le CGO ne semble pas avoir de département rattachés...');
+            return $this->redirectToRoute('app_listeDepartementsOfCgo', [], Response::HTTP_SEE_OTHER);
+        }
+
+
+        //on cherche les centres rattachés au cgo
+        $shops = $shopRepository->findBy(['cgo' => $cgo, 'isOnLine' => true], ['name' => 'ASC']);
+        //si aucun centre en ligne ou créé
+        if($shops == null){
+            $this->addFlash('warning', 'Le CGO ne semble pas avoir de centre rattachés...');
+            return $this->redirectToRoute('app_shop_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+
         $form = $this->createForm(SearchDistancesType::class, null, ['cgo' => $cgo]);
         $form->handleRequest($request);
 
         $datas = [];
         $shops = [];
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid()) {
 
-            $shops = $shopRepository->findBy(['cgo' => $cgo], ['name' => 'ASC']);
+            $shops = $shopRepository->findBy(['cgo' => $cgo, 'isOnLine' => true], ['name' => 'ASC']);
 
             if(!empty($form->get('ville')->getData())){
                 $depannage = $form->get('ville')->getData();

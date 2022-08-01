@@ -1,33 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Calcul des distances
+{% block title %}Trouver le centre le plus proche
 {% endblock %}
 
 {% block body %}
 
-	<h1 class="col-12 text-center h3 my-5">Calcul des distances</h1>
+	<h1 class="col-12 text-center h3 my-5">Trouver le centre le plus proche</h1>
 
 	<div class="row justify-content-around">
 		<div class="col-12 col-lg-5 p-0">
-			<div class="card col-12 text-center py-5 border-primary p-0">
-				<h3 class="col-12">Lieu d'intervention:</h3>
-					{# on affiche le formulaire #}
-					{{ form_start(form) }}
-						<div class="col-11 mx-auto">
-							{{ form_row(form.ville) }}
-						</div>
-					<hr>
-
-					<div class="row justify-content-center">
-						<h3 class="col-12">Par coordonnées GPS:</h3>
-
-						<div class="col-6">
-							{{ form_row(form.interventionLatitude) }}
-						</div>
-						<div class="col-6">
-							{{ form_row(form.interventionLongitude) }}
-						</div>
+			<div class="card col-12 text-center border-primary p-0 py-2">
+				{# on affiche le formulaire #}
+				{{ form_start(form) }}
+					<div class="col-12 py-2">
+						<h4 class="col-12">Par ville d'intervention:</h4>
+							<div class="col-11 mx-auto">
+								{{ form_row(form.ville) }}
+							</div>
 					</div>
+
+					<hr class="col-11 mx-auto">
+
+					<div class="col-12 d-flex flex-wrap py-2">
+						<h4 class="col-12">Par coordonnées GPS:</h4>
+							<div class="col-6">
+								{{ form_row(form.interventionLatitude) }}
+							</div>
+							<div class="col-6">
+								{{ form_row(form.interventionLongitude) }}
+							</div>
+					</div>
+					
 					{{ form_rest(form) }}
 				{{ form_end(form) }}
 
@@ -40,6 +43,7 @@
 					<table class="table text-center align-middle">
 						<thead>
 							<th>Centre</th>
+							<th>Type</th>
 							<th>Distance</th>
 							<th>Temps de trajet</th>
 						</thead>
@@ -49,10 +53,8 @@
 								{% set hours = (dureeEnSecondes / 3600) %60 | round %}
 								{% set minutes = (dureeEnSecondes / 60) %60 | round %}
 								<tr>
-									<td class="text-start">
-										{{ data.shop.name }}
-										<span class="badge badge-success"> {{ data.shop.type.type }} </span>
-									</td>
+									<td>{{ data.shop.name }}</td>
+									<td><span class="badge" style="color:{{ data.shop.type.color.textColor }}; background-color:{{ data.shop.type.color.bgColor }};"> {{ data.shop.type.type }} </span></td>
 									<td>{{ data.distance / 1000 }}
 										KMS</td>
 									<td>

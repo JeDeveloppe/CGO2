@@ -17,7 +17,6 @@ class DepartementsOfCgoType extends AbstractType
             ->add('departements', EntityType::class,[
                 'label' => false,
                 'class' => Departement::class,
-                'choice_label' => 'departement_code',
                 'choice_label' => function (Departement $departement) {
                     return $departement->getDepartementCode() . ' : ' . $departement->getDepartementNomUppercase();
                 },

@@ -5,27 +5,28 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarColor01">
-			<ul class="navbar-nav me-auto">
+			<ul class="navbar-nav ms-auto">
 				{% if app.user %}
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_dashboard') }}">Dashboard</a>
+						<a class="nav-link text-white" href="{{ path('app_dashboard') }}">Tableau de bord</a>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon CGO</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="{{ path('app_listeDepartementsOfCgo') }}">Liste des départements rattachés</a>
-							<a class="dropdown-item" href="{{ path('app_shop_index') }}">Liste des centres rattachés</a>
+						<a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon CGO</a>
+						<div class="dropdown-menu dropdown-menu-end">
+							<a class="dropdown-item" href="{{ path('app_listeDepartementsOfCgo') }}">Départements rattachés</a>
+							<a class="dropdown-item" href="{{ path('app_shop_index') }}">Centres rattachés</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
 						</div>
 					</li>
 					{% if is_granted('ROLE_ADMIN') %}
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="{{ path('app_admin_shop_index') }}">Liste des centres</a>
-								<a class="dropdown-item" href="{{ path('app_admin_cgo_index') }}">Liste des CGOs</a>
-								<a class="dropdown-item" href="{{ path('app_type_of_shop_index') }}">Liste des types de centre</a>
+							<a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
+							<div class="dropdown-menu dropdown-menu-end">
+								<a class="dropdown-item" href="{{ path('app_admin_shop_index') }}">Centres</a>
+								<a class="dropdown-item" href="{{ path('app_admin_cgo_index') }}">CGOs</a>
+								<a class="dropdown-item" href="{{ path('app_type_of_shop_index') }}">Types de centre</a>
+								<a class="dropdown-item" href="{{ path('app_color_shop_index') }}">Couleurs des types</a>
 							</div>
 						</li>
 					{% endif %}
@@ -35,10 +36,6 @@
 					</li>
 				{% endif %}
 			</ul>
-			<form class="d-flex">
-				<input class="form-control me-sm-2" type="text" placeholder="Search">
-				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-			</form>
 		</div>
 	</div>
 </nav>

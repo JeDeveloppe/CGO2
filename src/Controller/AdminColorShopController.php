@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/color/shop')]
+#[Route('/admin/color-shop')]
 class AdminColorShopController extends AbstractController
 {
     #[Route('/', name: 'app_color_shop_index', methods: ['GET'])]
