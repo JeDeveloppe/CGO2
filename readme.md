@@ -6,7 +6,7 @@
 ## Features
 
 - git clone
-- composer update
-- duplicate .env.dev in .env.prod and add news values
+- composer install
+- from <a href="https://jedeveloppe.github.io/HELPER/">HELPER</a> copy .env to a new .env.prod and add new values
 - make doctrine:migrations:migrate
-- register first user et in database set ROLE_ADMIN
+- register first user in database and set ROLE_ADMIN

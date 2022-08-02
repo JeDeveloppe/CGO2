@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ColorShop{% endblock %}
+{% block title %}Créer un thème de couleur{% endblock %}
 
 {% block body %}
-    <h1>Create new ColorShop</h1>
+    <h1 class="col-12 text-center my-5">Créer un thème de couleur</h1>
 
-    {{ include('admin/color_shop/_form.html.twig') }}
+	<a class="btn btn-secondary mb-2" href="{{ path('app_color_shop_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_color_shop_index') }}">back to list</a>
+	<div class="row mb-5">
+		<div class="col-6 mx-auto">
+            {{ include('admin/color_shop/_form.html.twig') }}
+        </div>
+    </div>
+
+
 {% endblock %}

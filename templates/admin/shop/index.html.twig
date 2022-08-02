@@ -12,7 +12,7 @@
 		<thead>
 			<tr>
 				<th>Nom</th>
-				<th>Statut du centre</th>
+				<th>Type de centre</th>
 				<th>Coordonnées GPS</th>
 				<th>Rattaché au CGO de</th>
 				<th></th>
@@ -21,8 +21,8 @@
 		<tbody>
 			{% for shop in shops %}
 				<tr>
-					<td>{{ shop.name }}</td>
-					<td>{{ shop.isOnLine ? '<span class="text-success text-uppercase">En ligne</span>' : '<span class="text-danger text-uppercase">Hors ligne</span>' }}</td>
+					<td>{{ shop.name }} {{ shop.isOnLine ? '<i class="fa-solid fa-circle text-success"></i>' : '<i class="fa-solid fa-circle text-danger"></i>' }}</td>
+					<td><span class="badge" style="color:{{ shop.type.color.textColor }}; background-color:{{ shop.type.color.bgColor }};"> {{ shop.type.color.name }} </span></td>
 					<td>Lat: {{ shop.latitude }} - Lng: {{ shop.longitude }}</td>
 					<td>{{ shop.cgo.name }}</td>
 					<td>

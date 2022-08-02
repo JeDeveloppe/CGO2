@@ -2,7 +2,7 @@
 <table>
     {% for color in colors %}
         <tr>
-            <td>{{ color.name }}</td><td class="bg-{{color.name}}"></td>
+            <td><span class="badge" style="color:{{ color.textColor }}; background-color:{{ color.bgColor }};"> {{ color.name }} </span></td>
         </tr>
     {% endfor %}
 </table>

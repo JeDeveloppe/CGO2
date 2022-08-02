@@ -10,10 +10,10 @@
 		<thead>
 			<tr>
 				<th>Nom du centre</th>
+				<th>Status</th>
 				<th>Type de centre</th>
 				<th>Latitude</th>
 				<th>Longitude</th>
-				<th>Status</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -21,10 +21,10 @@
 			{% for shop in shops %}
 				<tr>
 					<td>{{ shop.name }}</td>
-					<td>{{ shop.type.type }}</td>
+					<td>{{ shop.isOnLine ? '<i class="fa-solid fa-circle text-success"></i>' : '<i class="fa-solid fa-circle text-danger"></i>' }}</td>
+					<td><span class="badge" style="color:{{ shop.type.color.textColor }}; background-color:{{ shop.type.color.bgColor }};"> {{ shop.type.color.name }} </span></td>
 					<td>{{ shop.latitude }}</td>
 					<td>{{ shop.longitude }}</td>
-					<td>{{ shop.isOnLine ? '<span class="text-success text-uppercase">En ligne</span>' : '<span class="text-danger text-uppercase">Hors ligne</span>' }}</td>
 					<td>
 						<a class="btn btn-warning" href="{{ path('app_shop_edit', {'id': shop.id}) }}">Éditer</a>
 					</td>

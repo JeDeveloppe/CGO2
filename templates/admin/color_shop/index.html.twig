@@ -1,34 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ColorShop index{% endblock %}
+{% block title %}Couleurs des types de centre{% endblock %}
 
 {% block body %}
-    <h1 class="col-12 my-5 text-center">ColorShop index</h1>
+    <h1 class="col-12 my-5 text-center">Couleurs des types de centre</h1>
 
-    <table class="table text-center align-middle">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Exemple</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for color_shop in color_shops %}
-            <tr>
-                <td>{{ color_shop.name }}</td>
-                <td style="color:{{ color_shop.textColor }}; background-color:{{ color_shop.bgColor }};">TEXTE</td>
-                <td>
-                    <a class="btn btn-warning" href="{{ path('app_color_shop_edit', {'id': color_shop.id}) }}">Éditer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="col-8 mx-auto">
+        <table class="table text-center align-middle">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Exemple</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for color_shop in color_shops %}
+                <tr>
+                    <td>{{ color_shop.name }}</td>
+                    <td><span class="badge" style="color:{{ color_shop.textColor }}; background-color:{{ color_shop.bgColor }};"> {{ color_shop.name }} </span></td>
+                    <td>
+                        <a class="btn btn-warning" href="{{ path('app_color_shop_edit', {'id': color_shop.id}) }}">Éditer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <a class="btn btn-primary" href="{{ path('app_color_shop_new') }}">Créer une nouvelle couleur +</a>
 {% endblock %}

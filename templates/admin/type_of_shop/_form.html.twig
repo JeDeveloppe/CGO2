@@ -1,4 +1,12 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="mb-3">
+        <label class="form-label">{{ form_label(form.type) }}</label>
+        {{form_widget(form.type, {'attr': {'class':'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">{{ form_label(form.color) }}</label>
+        {{form_widget(form.color, {'attr': {'class':'form-select'}}) }}
+    </div>
+    {{ form_rest(form) }}
+    <button class="btn btn-success mt-4">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
