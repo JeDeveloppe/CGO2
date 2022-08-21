@@ -6,36 +6,25 @@
 {% block body %}
 	<h1 class="col-12 text-center my-5">Liste des centres rattachés au CGO</h1>
 
-	<table class="table table-striped text-center align-middle">
-		<thead>
-			<tr>
-				<th>Nom du centre</th>
-				<th>Status</th>
-				<th>Type de centre</th>
-				<th>Latitude</th>
-				<th>Longitude</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for shop in shops %}
-				<tr>
-					<td>{{ shop.name }}</td>
-					<td>{{ shop.isOnLine ? '<i class="fa-solid fa-circle text-success"></i>' : '<i class="fa-solid fa-circle text-danger"></i>' }}</td>
-					<td><span class="badge" style="color:{{ shop.type.color.textColor }}; background-color:{{ shop.type.color.bgColor }};"> {{ shop.type.color.name }} </span></td>
-					<td>{{ shop.latitude }}</td>
-					<td>{{ shop.longitude }}</td>
-					<td>
+	<div class="row justify-content-center justify-content-lg-start">
+		{% for shop in shops %}
+			<div class="col-11 col-md-6 col-lg-3 m-2">
+				<div class="card p-0 border-primary">
+					<div class="card-header">
+						{{ shop.name }} {{ shop.isOnLine ? '<i class="fa-solid fa-circle text-success"></i>' : '<i class="fa-solid fa-circle text-danger"></i>' }} <br/>
+						<span class="badge" style="color:{{ shop.type.color.textColor }}; background-color:{{ shop.type.color.bgColor }};"> {{ shop.type.color.name }} </span>
+					</div>
+					<div class="card-body">
+						Latitude: {{ shop.latitude }}<br/>
+						Longitude: {{ shop.longitude }}
+					</div>
+					<div class="card-footer text-end">
 						<a class="btn btn-warning" href="{{ path('app_shop_edit', {'id': shop.id}) }}">Éditer</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="6">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 
-	<a class="btn btn-primary" href="{{ path('app_shop_new') }}">Créer un nouveau centre +</a>
+	<a class="btn btn-primary mt-3" href="{{ path('app_shop_new') }}">Créer un nouveau centre +</a>
 {% endblock %}

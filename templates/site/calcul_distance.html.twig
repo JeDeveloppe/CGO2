@@ -8,7 +8,7 @@
 	<h1 class="col-12 text-center h3 my-5">Trouver le centre le plus proche</h1>
 
 	<div class="row justify-content-around">
-		<div class="col-12 col-lg-5 p-0">
+		<div class="col-11 mx-auto col-lg-5 p-0">
 			<div class="card col-12 text-center border-primary p-0 py-2">
 				{# on affiche le formulaire #}
 				{{ form_start(form) }}
@@ -21,14 +21,14 @@
 
 					<hr class="col-11 mx-auto">
 
-					<div class="col-12 d-flex flex-wrap py-2">
+					<div class="col-12 d-flex flex-wrap my-3 justify-content-center">
 						<h4 class="col-12">Par coordonnées GPS:</h4>
-							<div class="col-6">
-								{{ form_row(form.interventionLatitude) }}
-							</div>
-							<div class="col-6">
-								{{ form_row(form.interventionLongitude) }}
-							</div>
+						<div class="col-11 col-md-6">
+							{{ form_row(form.interventionLatitude) }}
+						</div>
+						<div class="col-11 col-md-6">
+							{{ form_row(form.interventionLongitude) }}
+						</div>
 					</div>
 					
 					{{ form_rest(form) }}
@@ -39,7 +39,7 @@
 		<div class="col-12 col-lg-6 my-3 my-lg-0 p-0">
 			{# s'il y a une recherche #}
 			{% if datas | length > 0 %}
-				<div class="card col-12 border-primary p-2">
+				<div class="card col-11 mx-auto border-primary p-2">
 					<table class="table text-center align-middle">
 						<thead>
 							<th>Centre</th>
@@ -71,7 +71,7 @@
 					</table>
 				</div>
 			{% else %}
-				<div class="card col-12 text-center text-black d-flex flex-column justify-content-around border-primary h-100">
+				<div class="card col-11 mx-auto text-center text-black d-flex flex-column justify-content-around border-primary h-100">
 					En attente du lieu d'intervention...
 				</div>
 			{% endif %}
