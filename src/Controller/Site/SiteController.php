@@ -3,12 +3,14 @@
 namespace App\Controller\Site;
 
 use App\Service\CgoService;
+use Doctrine\ORM\Mapping\Entity;
 use App\Form\SearchDistancesType;
 use App\Repository\ShopRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SiteController extends AbstractController
@@ -60,9 +62,12 @@ class SiteController extends AbstractController
                 $interventionLongitude = $depannage->getLongitude();
                 $interventionLatitude = $depannage->getLatitude();
 
-            }else{
+            }else if(!empty($form->get('interventionLongitude')->getData()) && !empty($form->get('interventionLatitude')->getData() )){
                 $interventionLongitude = $form->get('interventionLongitude')->getData();
-                $interventionLatitude =$form->get('interventionLatitude')->getData() ;
+                $interventionLatitude = $form->get('interventionLatitude')->getData() ;
+            }else{
+                $this->addFlash('warning', 'Aucun lieu de séléctionner !');
+                return $this->redirectToRoute('app_calcul_distances', [], Response::HTTP_SEE_OTHER);
             }
 
             foreach($shops as $shop){
@@ -73,11 +78,9 @@ class SiteController extends AbstractController
 
             //on tri le tableau en fonction de la distance la plus courte
             array_multisort(array_column($datas, 'distance'), SORT_ASC, $datas);
-        
         }
 
         return $this->render('site/calcul_distance.html.twig', [
-            'controller_name' => 'SiteController',
             'form' => $form->createView(),
             'datas' => $datas
         ]);

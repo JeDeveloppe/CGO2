@@ -12,22 +12,22 @@
 			<div class="card col-12 text-center border-primary p-0 py-2">
 				{# on affiche le formulaire #}
 				{{ form_start(form) }}
-					<div class="col-12 py-2">
-						<h4 class="col-12">Par ville d'intervention:</h4>
-							<div class="col-11 mx-auto">
-								{{ form_row(form.ville) }}
-							</div>
+				  	<div class="form-group col-10 mx-auto">
+						<label class="h5">Par ville d'intervention:</label>
+						{{ form_widget(form.ville) }}
 					</div>
+
 
 					<hr class="col-11 mx-auto">
 
 					<div class="col-12 d-flex flex-wrap my-3 justify-content-center">
 						<h4 class="col-12">Par coordonnées GPS:</h4>
-						<div class="col-11 col-md-6">
-							{{ form_row(form.interventionLatitude) }}
+
+						<div class="form-group col-8  mb-3">
+							{{ form_widget(form.interventionLatitude) }}
 						</div>
-						<div class="col-11 col-md-6">
-							{{ form_row(form.interventionLongitude) }}
+						<div class="form-group col-8 ">
+							{{ form_widget(form.interventionLongitude) }}
 						</div>
 					</div>
 					
@@ -44,8 +44,8 @@
 						<thead>
 							<th>Centre</th>
 							<th>Type</th>
-							<th>Distance</th>
-							<th>Temps de trajet</th>
+							<th>Distance<br/>(ALLER)</th>
+							<th>Temps de trajet<br/>(ALLER)</th>
 						</thead>
 						<tbody>
 							{% for data in datas %}

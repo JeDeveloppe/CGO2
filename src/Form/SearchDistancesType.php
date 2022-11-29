@@ -23,12 +23,20 @@ class SearchDistancesType extends AbstractType
             ->add('interventionLatitude', NumberType::class, [
                 'label' => 'Latitude (entre 50 et 42):',
                 'required' => false,
-                'mapped' => false
+                'mapped' => false,
+                'attr' => [
+                    'placeholder' => 'Latitude (entre 50 et 42):',
+                    'class' => 'text-center'
+                ]
             ])
             ->add('interventionLongitude', NumberType::class, [
                 'label' => 'Longitude (entre -5 et 8):',
                 'required' => false,
-                'mapped' => false
+                'mapped' => false,
+                'attr' => [
+                    'placeholder' => 'Longitude (entre -5 et 8)',
+                    'class' => 'text-center'
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Calculer',
