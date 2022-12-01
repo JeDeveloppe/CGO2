@@ -56,6 +56,11 @@ class SiteController extends AbstractController
 
             $shops = $shopRepository->findBy(['cgo' => $cgo, 'isOnLine' => true], ['name' => 'ASC']);
 
+            if(!empty($form->get('interventionLongitude')->getData()) && !empty($form->get('interventionLatitude')->getData()) && !empty($form->get('ville')->getData())){
+                $this->addFlash('warning', 'Choisir la ville OU la position GPS !');
+                return $this->redirectToRoute('app_calcul_distances', [], Response::HTTP_SEE_OTHER);
+            }
+
             if(!empty($form->get('ville')->getData())){
                 $depannage = $form->get('ville')->getData();
 
